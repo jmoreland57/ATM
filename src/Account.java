@@ -21,7 +21,17 @@ public class Account {
 			return false;//returns false
 		}
 		money += change;//changes money by specified amount
+		money = fixMoney(money);
 		return true;//returns true
+	}
+	
+	private double fixMoney(double money) {//fixes dumb binary moments
+		if (money * 1000 % 10 != 0) {
+			money = money * 100;
+			money = Math.round(money);
+			money = money / 100;
+		}
+		return money;
 	}
 	
 }
