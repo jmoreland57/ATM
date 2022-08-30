@@ -26,31 +26,26 @@ public class ATM {
 	}
 	
 	public boolean closeAccount (int ID) {//closes account based on ID; returns false if no such ID or acc has money in it
-		if (!accounts.containsKey(ID)||accounts.get(ID).getMoney()==0) {//checks to see if no account has such ID or if 
-			return false;
+		if (!accounts.containsKey(ID)||accounts.get(ID).getMoney()==0) {//checks to see if no account has such ID or if money in account
+			return false;//returns false
 		}
-		accounts.remove(ID);
-		return true;
+		accounts.remove(ID);//removes account
+		return true;//returns true
 	}
 	
-	public double checkBalance (int ID) {
-		return (accounts.get(ID).getMoney());
+	public double checkBalance (int ID) { //returns balance of account based on ID
+		return (accounts.get(ID).getMoney()); //returns balance
 	}
 	
-	public boolean deposit (int ID, double money) {
-		if (!accounts.containsKey(ID)) {
+	public boolean deposit (int ID, double money) { //changes the amount of money in an account; if there is no such account, or if the amount is not in dollars and cents, or the acc doesn't have enough money to take out the requested amount, returns false
+		if (!accounts.containsKey(ID)||money*1000%10!=0) {
 			return false;
 		}
-		accounts.get(ID).deposit(money);
-		return true;
+		return (accounts.get(ID).deposit(money));
 	}
 	
-	public boolean withdraw (int ID, double money) {
-		if (!accounts.containsKey(ID)) {
-			return false;
-		}
-		accounts.get(ID).deposit(-money);
-		return true;
+	public boolean withdraw (int ID, double money) {//returns deposit with a negative amount of money
+		return(deposit(ID,-money));
 	}
 	
 }
